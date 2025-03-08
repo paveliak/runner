@@ -135,4 +135,3 @@ jobs:
   publish-image:
     needs: release
     uses: ./.github/workflows/publish-image.yml
-    secrets: inherit

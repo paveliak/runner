@@ -207,7 +207,7 @@ function package ()
         $POWERSHELL -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command "Add-Type -Assembly \"System.IO.Compression.FileSystem\"; [System.IO.Compression.ZipFile]::CreateFromDirectory(\"${window_path}\", \"${zip_name}\")"
         slim_tar_name="${runner_slim_pkg_name}.tar.zst"
         echo "Creating $slim_tar_name in ${window_path}"
-        $POWERSHELL -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command "tar -cf \"${slim_tar_name}\" -C \"${window_path}\" --use-compress-program="zstd -19" --exclude=\"externals\" ."
+        $POWERSHELL -NoLogo -Sta -NoProfile -NonInteractive -ExecutionPolicy Unrestricted -Command "$env:ZSTD_CLEVEL="9999"; tar -cf \"${slim_tar_name}\" -C \"${window_path}\" --zstd --exclude=\"externals\" ."
     fi
 
 
